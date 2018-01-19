@@ -47,4 +47,4 @@ loadUserGeolocationInfo()
     .then((obj) => { console.log("done! Weather info is down below.\n"); console.log(obj); });
 
 
-//AJAX Request By Javascript Promise
+//AJAX Request By Javascript Promise. It's a simple example

@@ -1,0 +1,1100 @@
+@import url("https://fonts.googleapis.com/css?family=Ubuntu+Condensed|Open+Sans+Condensed:300");
+@import url("https://fonts.googleapis.com/css?family=Russo+One|Signika");
+
+*, *:after, *:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul{
+  list-style: none;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  min-width: 800px;
+}
+
+body {
+  background:
+  repeating-linear-gradient(to right, transparent 0px, transparent 97px,
+  rgba(0,0,0,0.05) 97px, rgba(0,0,0,0.05) 100px),
+  repeating-linear-gradient(to bottom, transparent 0px, transparent 97px,
+  rgba(0,0,0,0.05) 97px, rgba(0,0,0,0.05) 100px),
+  repeating-linear-gradient(to right, transparent 0px, transparent 19px,
+  rgba(0,0,0,.1) 20px),
+  repeating-linear-gradient(to bottom, transparent 0px, transparent 19px,
+  rgba(0,0,0,.1) 20px),
+  linear-gradient(135deg, rgba(171,178,35,1) 0%,
+  rgba(62,127,25,1) 50%,rgba(1,145,142,1) 100%);
+
+  position: relative;
+}
+
+div#googleMap {
+  position: fixed;
+  width: 100%; height: 100%;
+  background-color: rgba(90,20,20,0.85);
+  z-index: 11;
+
+  transition: opacity 0.5s ease-out;
+}
+div#googleMap.closed {
+    opacity: 0;
+}
+div#googleMap.open {
+    opacity: 1;
+}
+
+div#googleMap > .outermost {
+  position: absolute;
+  width: 100%; height: 100%;
+  top: 50%; left: 50%;
+  transition: all 0.5s ease-out;
+  overflow: hidden;
+}
+div#googleMap.closed > .outermost {
+  transform: translate(-50%, -50%) scale(0,0);
+}
+div#googleMap.open > .outermost {
+  transform: translate(-50%, -50%) scale(1,1);
+}
+
+div#googleMap > .outermost > span.earth {
+  position: absolute;
+  height: 50%; width: 50%;
+  text-align: center;
+  line-height: 1;
+  color: rgb(90,20,20);
+  transition: opacity 3s ease-out 0.7s;
+}
+div#googleMap.mobile > .outermost > span.earth {
+  display: none;
+}
+
+div#googleMap.closed > .outermost > span.earth {
+  opacity: 0;
+}
+div#googleMap.open > .outermost > span.earth {
+  opacity: 0.7;
+}
+div#googleMap > .outermost > span.earth._1 {
+  top: -40%; left: -10%;
+  font-size: 900px;
+}
+div#googleMap > .outermost > span.earth._2 {
+  font-size: 700px;
+  right: -10%; bottom: -10%;
+}
+div#googleMap > .outermost > span.earth._3 {
+  font-size: 400px;
+  right: -20%; top: -10%;
+}
+
+div#googleMap  div#map {
+  min-height: 400px; min-width: 600px;
+  height: 70%; width: 70%;
+
+  position: absolute;
+  top: 50%; left: 50%;
+  outline: 5px double rgba(255,255,255,0.8); outline-offset: 10px;
+  z-index: 10;
+
+  transform: translate(-50%, -50%);
+}
+div#googleMap.mobile div#map {
+  height: 100%; width: 100%;
+}
+
+div#googleMap div.ipad {
+  min-height: 150px; min-width: 230px;
+  width: 16%; height: 22.5%;
+  margin: 15px; margin-top: 0;
+
+  position: absolute;
+  top: 17%; left: 16%;
+
+  border-radius: 10%/20%;
+  background:
+    linear-gradient(to bottom right, rgba(70,70,70,1) 0%, rgba(20,20,20,1) 100%);
+  box-shadow:
+  inset 5px 5px 10px 5px rgba(30,30,30, 0.2),
+  -2px -1px 1px 2px rgba(50,50,50,1),
+  3px 3px 6px 4px rgba(0,0,0,0.15);
+}
+
+div#googleMap div.ipad > div.screen {
+  position: absolute;
+  width: 70%; height: 80%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: inset 0 0 15px 10px rgba(0,0,0,0.1);
+  background-color: rgba(20,20,20,0.6);
+}
+
+div.ipad > div.homebtn {
+  position: absolute;
+  width: 8%; height: 12%;
+  top: 50%; left: 4%;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background:
+  linear-gradient(to bottom right, rgba(60,60,60,1) 0%, rgba(20,20,20,1) 100%);
+  border: 2px double rgba(60,60,60,1);
+  box-shadow: inset 0 0 3px 3px rgba(10,10,10, 0.2);
+}
+
+div.ipad > div.mic {
+  position: absolute;
+  width: 1%; height: 30%;
+  top: 35%; right: 5%;
+  border-radius: 50%/10%;
+  background-color: rgba(30,30,30,1);
+  border: 1px double rgba(20,20,20,1);
+}
+
+div.ipad > div.sidebtn {
+  position: absolute;
+  height: 3%; width: 20%;
+  top: -3%; right: 20%;
+}
+
+div.ipad > div.sidebtn:after,
+div.ipad > div.sidebtn:before {
+  content: "";
+  position: absolute;
+  width: 25%; height: 100%;
+  border-radius: 20%/50%;
+  background-color: rgba(50,50,50,1);
+  box-shadow: 0px 0px 0px 1px rgba(20,20,20,0.3);
+}
+div.ipad > div.sidebtn:before{
+  left: 0;
+}
+div.ipad > div.sidebtn:after{
+  right: 0;
+}
+
+div.infowindow {
+  transform: translateY(-100%);
+  opacity: 0;
+  animation: fadeIn 0.6s ease-out 0.2s forwards;
+}
+div.infowindow_spaceholder{
+  position: relative;
+  overflow: hidden;
+  width: 40px; height: 40px;
+}
+div.infowindow_spaceholder > span {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  color: #992233; text-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+  transform: rotate(0deg);
+  font-size: 35px; text-align: center;
+
+  animation: infowindow_spin 4s linear infinite;
+}
+
+@keyframes infowindow_spin {
+  0% {transform: translate(-50%, -50%) rotate(0deg);}
+  100% {transform: translate(-50%, -50%) rotate(360deg);} }
+
+div.infowindow_spaceholder > span:after {
+  content: "\263A";
+}
+@keyframes fadeIn {
+  0%{ opacity: 0; transform: translateY(-100%);}
+  100%{ opacity: 1; transform: translateY(0%);}
+}
+
+p#txt {
+  position: absolute;
+  min-width: 100px;
+  min-height: 50px;
+  top: 20px; right: 20px;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.8);
+  color: #ffffaa;
+  font-size: 12px;
+  line-height: 1.1;
+  border: 3px solid #fff;
+  border-radius: 10px;
+
+  padding: 18px;
+}
+
+/* weather widget */
+div#weatherwidget{
+
+  width: 140px; height: 100px;
+  border: 2px solid #fff; border-radius: 5px;
+
+  background:
+  repeating-linear-gradient(to bottom, transparent 0px, transparent 3px,
+  rgba(255,255,255,0.15) 3px, rgba(255,255,255,0.15) 4px);
+  color: #fff;
+
+  font-size: 18px; line-height: 1; text-align: left;
+  font-family: "Ubuntu Condensed" , fantasy, Georgia;
+
+  /* grid specification */
+  display: -ms-grid;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 2px; grid-row-gap: 2px;
+  padding: 2px;
+
+  position: fixed;   z-index: 10;
+  top: 10px; right: 10px;
+  transition: opacity 0.6s ease-out, transform 0.4s ease-out;
+
+  opacity: 0; visibility: hidden;
+}
+div#weatherwidget.active {
+  opacity: 1; visibility: visible;
+}
+
+div#weatherwidget.mobile {
+  top: calc(100% - 145px);
+}
+
+div#weatherwidget.removed {
+  opacity: 0; transform: scale(0,0) rotate(360deg);
+}
+div#weatherwidget.active.removed {
+  opacity: 0; transform: scale(0,0) rotate(360deg);
+}
+
+div#weatherwidget > div {
+  position: relative;
+}
+/* Things need to be adjusted by Javascript:
+if width is specified, height is specified so that the7:5 aspect ratio is
+maintaned
+
+grid-column-gap, grid-row-gap, padding.
+border-color, color, background.
+
+as size changes:
+font-size, line-height.
+*/
+div#weatherwidget > div#startingani {
+  position: absolute;
+  width: 100%; height: 100%;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+div#startingani >span.pointer {
+  position: absolute;
+  width: 120px; height: 120px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255,255,30,0.3);
+  border-radius: 50%; border: 3px solid rgba(255,255,30,0.5);
+  animation: imhere_pointer 0.5s linear infinite;
+}
+@keyframes imhere_pointer {
+  0%{ transform: translate(-50%, -50%) scale(0.5,0.5);}
+  50%{ transform: translate(-50%, -50%) scale(1,1);}
+  100%{ transform: translate(-50%, -50%) scale(0.5,0.5);}
+}
+
+div#startingani >span.sign {
+  color: rgba(170,20,30,0.85);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  font-size: 18px; line-height: 1;
+  font-family: "Signika"; font-weight: 800;
+  text-align: center;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: imhere_sign 0.5s linear infinite;
+}
+@keyframes imhere_sign {
+  0%{ transform: translate(-50%, -50%) scale(0.9,0.9) rotate(-20deg);}
+  50%{ transform: translate(-50%, -50%) scale(1.1,1.1) rotate(20deg);}
+  100%{ transform: translate(-50%, -50%) scale(0.9,0.9) rotate(-20deg);}
+}
+div#weatherwidget > div.remove {
+  grid-column: -2/-1; grid-row: 1/2;
+  -ms-grid-column: 7; -ms-grid-row: 1;
+  border: 0px solid #fff; border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.1s linear;
+}
+
+div#weatherwidget > div.remove > span {
+  font-size: 12px; line-height: inherit;
+  font-weight: 900; color: inherit;
+
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div#weatherwidget > div.remove:hover {
+  border-width: 1px;
+}
+
+/*
+as box-size changes:
+font-size
+
+need to be adjusted.
+*/
+
+div#weatherwidget > div.fix {
+  grid-column: -4/-2; grid-row: 1/2;
+  -ms-grid-column: 5; -ms-grid-row: 1;
+  -ms-grid-column-span: 2;
+  cursor: pointer;
+}
+
+div#weatherwidget > div.fix > span.track {
+  border: 1px solid #fff; border-radius: 8px;
+  height: calc(100% - 2px); width: calc(100% - 2px);
+  position: absolute;
+  top: 1px; left: 1px;
+}
+/*
+as box-size changes:
+border-radius
+
+need to be adjusted.
+*/
+div#weatherwidget > div.fix > span.track > span.object {
+  position: absolute;
+  height: calc(100% - 2px); width: calc(45% - 2px);
+  border-radius: 50%; border: 2px solid #fff;
+  transition: all 0.25s linear;
+}
+div#weatherwidget > div.fix.on > span.track > span.object {
+  top: 1px; left: 1px;
+  background-color: rgba(255,255,255,1);
+}
+div#weatherwidget > div.fix.off > span.track > span.object {
+  top: 1px; left: 54%;
+  background-color: rgba(255,255,255,0);
+}
+/*
+as box-size changes:
+padding
+as box-color changes:
+background-color
+
+need to be adjusted.
+*/
+
+div#weatherwidget > div.grabbable {
+  grid-column: 1/4; grid-row: 1/2;
+  -ms-grid-column: 1; -ms-grid-row: 1;
+  -ms-grid-column-span: 3;
+  cursor: -webkit-grab; cursor: grab;
+  border: 1px solid #fff; border-radius: 3px;
+  transition: opacity 0.25s linear;
+  opacity: 1;
+}
+
+div#weatherwidget > div.grabbable.unavailable {
+  cursor: -webkit-not-allowed; cursor: not-allowed;
+  opacity: 0.6;
+}
+div#weatherwidget > div.grabbable:active {
+  cursor: -webkit-grabbing; cursor: grabbing;
+}
+div#weatherwidget > div.grabbable.unavailable:active {
+  cursor: -webkit-not-allowed; cursor: not-allowed;
+}
+
+div#weatherwidget > div.grabbable > span.area {
+  position: absolute;
+  width: calc(100% - 2px); height: calc(100% - 2px);
+  top: 1px; left: 1px;
+  border: 1px solid #fff; border-radius:3px;
+
+  background:
+  repeating-linear-gradient(to bottom, transparent 0px, transparent 2px,
+  rgba(255,255,255,1) 2px, rgba(255,255,255,1) 3px),
+  repeating-linear-gradient(to right, transparent 0px, transparent 2px,
+  rgba(255,255,255,1) 2px, rgba(255,255,255,1) 3px);
+}
+/*
+as box-size changes:
+border-radius
+as box-color changes:
+border-color
+background: repeating-linear-gradient
+
+need to be adjusted.
+*/
+div#weatherwidget > div.animation {
+  grid-column: 1/4; grid-row: 2/5;
+  -ms-grid-column: 1; -ms-grid-row: 2;
+  -ms-grid-column-span: 3; -ms-grid-row-span: 3;
+}
+div#weatherwidget > div.animation > div {
+  position: absolute;
+  width: 100%; height: 100%;
+  overflow: hidden;
+}
+/* An example Animation as a spaceholder */
+
+div#weatherwidget > div.tempandwind {
+  grid-column: 4/-1; grid-row: 2/4;
+  -ms-grid-column: 4; -ms-grid-row: 2;
+  -ms-grid-column-span: 4; -ms-grid-row-span: 2;
+  -ms-grid-column:
+}
+
+div#weatherwidget > div.tempandwind > span.temp.number {
+  position: absolute;
+  width: 50%; height: 95%;
+  left: 0%; top: 8%;
+
+  font-size: 30px; line-height: 1;
+  font-weight: 600; letter-spacing: -2px;
+  text-align: center;
+  transition: opacity 0.3s ease-out;
+}
+/*
+as box-size changes:
+font-size
+
+need to be adjusted.
+*/
+div#weatherwidget > div.tempandwind > span.temp.unit {
+  position: absolute;
+  width: 25%; height: 48%;
+  bottom: 5%; left: 50%;
+  font-size: 15px; font-weight: 900;
+  cursor: pointer;
+  border: 0px solid #fff;  border-radius: 3px;
+}
+
+/*
+as box-size changes:
+font-size
+asbox-color changes:
+border-Color
+
+need to be adjusted.
+*/
+
+div#weatherwidget > div.tempandwind > span.temp.unit:hover {
+  border-width: 1px;
+}
+
+div#weatherwidget > div.tempandwind > span.temp.unit:after {
+  position: absolute;
+  content: "\2103";
+  width: 100%; height: 100%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div#weatherwidget > div.tempandwind > span.temp.unit.celcius:after{
+  content: "\2103";
+}
+div#weatherwidget > div.tempandwind > span.temp.unit.fahrenheit:after{
+  content: "\2109";
+}
+
+div#weatherwidget > div.tempandwind > span.wind.number {
+  position: absolute;
+  width: 48%; height: 48%;
+  top: 5%; right: 2%;
+  font-size: 14px; text-align: right;
+}
+/*
+as box-size changes:
+font-size
+
+need to be adjusted.
+*/
+div#weatherwidget > div.tempandwind > span.wind.unit {
+  position: absolute;
+  width: 25%; height: 48%;
+  bottom: 5%; right: 2%;
+  font-size: 12px; text-align: right;
+}
+/*
+as box-size changes:
+font-size
+
+need to be adjusted.
+*/
+
+div#weatherwidget > div.description {
+  grid-column: 4/-1; grid-row: 4/5;
+  -ms-grid-column: 4; -ms-grid-row: 4;
+  -ms-grid-column-span: 4;
+  font-size: 13px; letter-spacing: 1px;
+  line-height: 1.1; text-indent: 5px;
+  font-weight: 600;
+}
+/*
+as box-size changes:
+font-size
+
+need to be adjusted.
+*/
+div#weatherwidget > div.place {
+  grid-column: 1/-3; grid-row: -2/-1;
+  -ms-grid-column: 1; -ms-grid-row: 5;
+  -ms-grid-column-span: 5;
+
+  font-size: 13px; line-height: 1.1;
+  text-indent: 2px;
+}
+
+/*
+as box-size changes:
+font-size
+
+need to be adjusted.
+*/
+div#weatherwidget > div.menu {
+  grid-column: -3/-1; grid-row: -2/-1;
+  -ms-grid-column: 6; -ms-grid-row: 5;
+  -ms-grid-column-span: 2;
+  font-size: 13px;
+  line-height: 1.1; text-align: center;
+  border: 1px dashed #fff; border-radius: 3px;
+  cursor: pointer;
+}
+
+div#weatherwidget > div.menu:hover {
+  border-style: solid;
+}
+/*
+as box-size changes:
+font-size
+border-radius
+as color changes:
+border-Color
+
+
+need to be adjusted.
+*/
+
+/*
+Desiging google Map
+*/
+div.ipad > div.screen {
+  position: absolute;
+  width: 100%; height: 100%;
+  padding: 5px;
+}
+
+div.ipad > div.screen > div {
+  position: absolute;
+  width: 47%; height: 96%;
+}
+
+div.ipad > div.screen > div.ani {
+    top: 2%; left: 2%;
+}
+
+div.ipad > div.screen > div.text {
+    top: 2%; right: 2%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div.screen > div.text > div {
+
+  height: 15%; width: 90%;
+  text-indent: 4px;
+  border-left: 1px solid #ffff55;
+
+  font-size: 12.5px; color: #ffff55;
+  line-height: 1; text-align: left;
+  font-family: "Ubuntu Condensed";
+  text-shadow: 2px 2px 1px rgba(120,30,0,0.3);
+}
+
+div.screen > div.ani > div {
+  position: absolute;
+  width: 70px; height: 70px;
+
+  top: 50%; right: 0%; transform: translateY(-50%);
+  overflow: hidden;
+}
+
+div#floatingPanel {
+  margin: 15px;
+}
+
+div#floatingPanel > input {
+  padding: 10px; height: 40px;
+  box-shadow: inset 0px 0px 7px 4px rgba(0,0,0,0.15);
+  border: none;
+  outline: 1px dashed transparent;
+  transition: outline 0.3s ease-out;
+  color: #ffffff; font-size: 120%;
+  text-indent: 5px; font-weight: 800;
+  text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+  background-color: rgba(215,100,100,1);
+  box-shadow: 30px 3px 5px 4px rgba(0,0,0,0.15);
+}
+
+::-webkit-input-placeholder {
+  color: rgba(255,255,255,0.5);
+  text-shadow: none;
+}
+:-ms-input-placeholder { /* Chrome */
+  color: rgba(255,255,255,0.5);
+  text-shadow: none;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: rgba(255,255,255,0.5);
+  text-shadow: none;
+  opacity: 1;
+}
+
+div#floatingPanel > input:focus {
+  outline: 1px dashed #992233;
+  outline-offset: -3px;
+}
+
+div#floatingPanel > button {
+  padding: 10px;
+  font-weight: 800;
+  outline: none; border: none;
+  border-left: 2px solid #551111;
+
+  background-color: #992233;
+  color: #fff; font-weight: 800px;
+  text-shadow: rgba(0,0,0,0.35);
+  font-size: 120%;
+  height: 40px;
+}
+
+div#floatingPanel > button:hover {
+  background-color: #772222;
+}
+
+div#floatingPanel > button:active {
+  background-color: #551111;
+}
+
+div#googleMap div.closebtn {
+  width: 30px; height: 30px;
+  color: #fff; text-align: center;
+  font-size: 20px; line-height: 30px;
+  font-weight: 600;
+  background-color: #992233;
+  outline: 2px double #fff;
+  outline-offset: -3px;
+  cursor: pointer;
+  margin: 10px;
+}
+div#googleMap div.closebtn:hover {
+  background-color: #771122;
+  transform: scale(1.1, 1.1);
+}
+div#googleMap div.closebtn:active {
+  transform: scale(0.9,0.9);
+}
+
+
+/* Landing Page Design */
+div#landingPage {
+  position: absolute;
+  width: 100%; height: 100%;
+
+}
+
+div#landingPage > header {
+  position: relative;
+  width: 100%; height: 35%;
+  background:
+  repeating-linear-gradient(to bottom, transparent 0px, transparent 2px,
+  rgba(45,45,60,0.5) 2px, rgba(45,45,60,0.5) 3px),
+  repeating-linear-gradient(to right, transparent 0px, transparent 2px,
+  rgba(45,45,60,0.5) 2px, rgba(45,45,60,0.5) 3px),
+  linear-gradient(to bottom right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+  box-shadow: 0 4px 3px 5px rgba(0,0,0,0.15);
+}
+div#landingPage > header:after {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 2px; width: 100%;
+  bottom: 0%; left: 0%;
+  background-color: rgba(0,0,0,0.25);
+}
+
+div#landingPage > header > p {
+  color: #fff;
+  font-size: 45px; font-weight: 800;
+  font-family: "Russo One";
+  display: inline-block;
+  position: absolute; top: 40%; left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 5px 5px 7px rgba(0,0,0,0.2);
+}
+
+div#landingPage > header > p >span#dt {
+  font-size: 80px;
+  text-decoration: none;
+}
+
+div#landingPage > header > p >span#dt > span {
+  padding-left: 5px; padding-right: 5px;
+  background-color: rgba(0,0,0,0);
+  transition: background-color 0.3s linear;
+}
+div#landingPage > header > p >span#dt > span.on {
+  background-color: rgba(0,0,0,0.4);
+}
+
+span#word_ani {
+  background-color: rgba(0,0,0,0.4);
+  box-shadow: inset 0 0 5px 7px rgba(0,0,0,0.3);
+
+  font-size: 30px; letter-spacing: 3px;
+  text-align: left; text-decoration: none;
+
+  padding-left: 3px; padding-right: 3px;
+  margin-left: 10px;
+}
+span#word_ani:before {
+  content: ": ";
+  font-weight: 100;
+}
+span#word_ani:after {
+  content: "|";
+  font-weight: 100;
+  animation: blinking 1.2s linear infinite;
+}
+
+@keyframes blinking {
+  0% {opacity: 0} 30%{opacity: 0} 50%{opacity: 1} 70%{opacity: 0} 100% {opacity: 0}
+}
+
+div#landingPage > header > div.menu {
+  position: absolute;
+  width: 300px; height: 40px;
+  bottom: 20px; left: 50%;
+  transform: translateX(-50%);
+}
+
+div#landingPage > header > div.menu > span {
+  position: absolute;
+  height: 100%;
+  padding-left: 10px; padding-right: 10px;
+  background-color: rgba(0,0,0,0.4);
+  box-shadow: inset 0 0 5px 7px rgba(0,0,0,0.3);
+
+  font-family: "Russo One"; color: #fff;
+  font-weight: 400;
+  font-size: 20px; line-height: 40px;
+  text-align: center;
+  text-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  outline: none;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+div#landingPage > header > div.menu > span.active,
+div#landingPage > header > div.menu > span:active,
+div#landingPage > header > div.menu > span:hover  {
+  outline: 2px double rgba(255,255,255,1);
+  outline-offset: -2px;
+}
+div#landingPage > header > div.menu > span:first-child {
+  left: 5px;
+}
+div#landingPage > header > div.menu > span:last-child {
+  right: 5px;
+}
+
+div#landingPage > section.content {
+  position: relative;
+  width: 100%; height: 55%;
+  text-align: center;
+  overflow: hidden;
+}
+div#landingPage.mobile > section.content {
+  height: 55%;
+  overflow: scroll;
+}
+
+div#landingPage > section.content > div.page {
+  position: relative;
+  display: inline-block;
+  width: 50%; min-width: 800px;
+  padding: 25px;
+  font-size: 22px; color: rgba(255,255,255,1);
+  line-height: 1.2;
+  font-family: "Signika"; font-weight: 100;
+  text-align: center;
+
+}
+div#landingPage.mobile > section.content > div.page {
+  width: 100%; min-width: none;
+}
+
+div#landingPage > section.content > div.page > h3 {
+  font-size: 40px;
+  text-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+}
+
+div#landingPage > section.content > div.page > div.slanted {
+  position: absolute;
+  background-color: rgba(0,0,0,0.25);
+  height: 40%; width: 100%;
+  top: 0; left: 0;
+  transform-origin: 0% 0%;
+  z-index: -1;
+  outline: 5px solid rgba(0,0,0,0.25);
+  outline-offset: 10px;
+}
+div#landingPage > section.content > div.page._1 > div.slanted {
+  transform: translateY(-10%) skewY(-5deg);
+}
+div#landingPage > section.content > div.page._1 > span.decoicon {
+  color: rgba(255,255,255,1);
+  font-size: 25px; text-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+}
+div#landingPage > section.content > div.page > span.bgicon {
+  position: absolute;
+  bottom: 10px; left: 40px;
+  color: rgba(0,0,0,0.15);
+  font-size: 200px;
+  z-index: -1;
+}
+div#landingPage.mobile > section.content > div.page > span.bgicon {
+  font-size: 100px;
+  bottom: 5%; left: 20px;
+}
+div#landingPage > section.content > div.page._1 > ul {
+  margin: 10px 0; display: inline-block;
+  width: 80%;
+}
+div#landingPage.mobile > section.content > div.page._1 > ul {
+  margin: 10px 0;
+  width: 100%;
+}
+div#landingPage > section.content > div.page._1 > ul > li {
+  padding: 20px;
+  text-align: right;
+  text-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+}
+
+div#landingPage span.highlight {
+  display: inline-block;
+  position: relative;
+}
+div#landingPage span.highlight:after {
+  content: "";
+  position: absolute;
+  display: block;
+  z-index: -1;
+  width: 100%; height: 60%;
+  bottom: 0%; left: 0%;
+  background-color: rgba(150,20,30, 0.7);
+  animation: highlight_ani 4s linear infinite;
+}
+@keyframes highlight_ani {
+  0% {width: 0%;} 20% {width: 100%;}
+}
+
+div#landingPage > section.content > div.page._2 {
+  min-height: 425px;
+  font-family: "Signika"; font-weight: 100;
+}
+div#landingPage > section.content > div.page._2 > div.slanted {
+  transform-origin: 100% 0%;
+  transform: skewY(5deg);
+}
+section.content > div.page._2 > div.explanation {
+  position: absolute;
+  height: 75%; width: 100%;
+  bottom: 5%; left: 0%;
+  text-align: center;
+}
+
+section.content > div.page._2 > div.explanation > p {
+  padding: 20px;
+  text-align: right;
+  text-shadow: 0px 5px 5px rgba(0,0,0,0.3);
+  position: absolute;
+  right: 0; bottom: 0;
+}
+section.content > div.page._2 div.img {
+  background-image: url("./asset/snapshot_weatherwidget.png");
+  background-size: 166px 120px; background-position: -5px -5px;
+  background-repeat: no-repeat;
+  filter: brightness(80%);
+
+  outline: 6px double rgba(0,0,0,0.4);
+
+  position: absolute;
+  width: 154px; height: 110px;
+  top: 45%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+section.content > div.page._2 div.img > span.circle {
+  width: 25px; height: 25px;
+  border-radius: 50%;
+  border: 2px solid rgba(205,30,30,0.6);
+  background-color: rgba(205,30,30,0.4);
+  box-shadow:
+  0 0 4px 2px rgba(0,0,0,0.1),
+  inset 0 0 4px 2px rgba(0,0,0,0.1);
+
+  position: absolute;
+  animation: scaleupdown 1.5s linear infinite;
+}
+
+@keyframes scaleupdown {
+  0%{transform: scale(0,0);} 50%{transform: scale(1,1);}
+  100%{transform: scale(0,0);}
+}
+
+div.page._2 div.img > span.circle:first-child {
+  top: 0px; left: 20px;
+}
+div.page._2 div.img > span.circle:nth-child(2) {
+  top: 0px; right: 30px;
+}
+div.page._2 div.img > span.circle:nth-child(3) {
+  top: 40px; right: 20px;
+}
+div.page._2 div.img > span.circle:nth-child(4) {
+  bottom: 0px; right: 5px;
+}
+
+section.content > div.page._2 div.img > span.tooltip {
+  position: absolute;
+  display: block;
+  width: 150px; height: 30px;
+  text-align: center;
+  font-size: 14px; line-height: 30px; color: rgba(255,255,255,0.9);
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 10%/50%;
+}
+section.content > div.page._2 div.img > span.tooltip.left {
+  right: 100%; top: -2%;
+}
+section.content > div.page._2 div.img > span.tooltip.left:after {
+  content: "";
+  width: 0; height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 12px solid rgba(0,0,0,0.7);
+  position: absolute;
+  top: 9px; right: -12px;
+}
+section.content > div.page._2 div.img > span.tooltip.right:after {
+  content: "";
+  width: 0; height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 12px solid rgba(0,0,0,0.7);
+  position: absolute;
+  top: 9px; left: -12px;
+}
+section.content > div.page._2 div.img > span.tooltip.right {
+  top: 35%; left: 100%;
+}
+section.content > div.page._2 div.img > span.tooltip.above:after {
+  content: "";
+  width: 0; height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 12px solid rgba(0,0,0,0.7);
+  position: absolute;
+  bottom: -12px; left: 30%;
+}
+section.content > div.page._2 div.img > span.tooltip.above {
+  top: -40%; left: 29%;
+  width: 200px;
+}
+section.content > div.page._2 div.img > span.tooltip.below:after {
+  content: "";
+  width: 0; height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 12px solid rgba(0,0,0,0.7);
+  position: absolute;
+  top: -12px; left: 40%;
+}
+section.content > div.page._2 div.img > span.tooltip.below {
+  bottom: -40%; right: -42%;
+}
+button#activate_widget {
+  padding: 10px;
+  background-color: rgba(255,255,255,1);
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.25);
+  text-align: center;
+  font-family: "Signika"; font-weight: 800;
+  font-size: 18px; color: rgba(1,120,115,1);
+  line-height: 1;
+  box-shadow:
+  1px 1px 0 3px rgba(255,255,255,0.1),
+  0 0 4px 2px rgba(0,0,0,0.2);
+  cursor: pointer;
+  overflow: hidden;
+
+  border-radius: 15px;
+  outline: none;
+}
+button#activate_widget > span {
+  position: relative; left: 0;
+}
+
+button#activate_widget:hover > span {
+  animation: sweep 0.5s linear forwards;
+}
+@keyframes sweep {
+  0% { left: 150px; } 60% { left: -10px; }
+  70% { left: 0px; }
+}
+
+button#activate_widget:active {
+  transform: scale(0.95, 0.95);
+}
+
+div#landingPage > footer {
+  position: relative;
+  width: 100%; height: 10%;
+  font-family: "Russo One"; font-weight: 100;
+  font-size: 13px;
+  color: rgba(0,0,0,0.5); text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
+  border-top: 2px solid rgba(0,0,0,0.2);
+  box-shadow: -2px 0 3px 2px rgba(0,0,0,0.15);
+}
+
+div#landingPage > footer > p {
+  position: absolute;
+  bottom: 10px; right: 15px;
+  text-decoration: underline;
+}
+div#landingPage > footer > span {
+  font-size: 26px;
+  position: absolute;
+  top: 10px; right: 15px;
+}
+div#landingPage > footer > span > a {
+  float: right;
+  margin: 10px 0 0 10px;
+  cursor: pointer;
+  color: inherit;
+}
+div#landingPage > footer > span > a:hover > i {
+  animation: rotateicon 1.4s linear infinite;
+}
+
+@keyframes rotateicon {
+  0% { transform: scale(1.1) rotate(0deg);}
+  100% { transform: scale(1.1) rotate(360deg);}
+}

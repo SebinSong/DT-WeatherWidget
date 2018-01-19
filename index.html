@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-compatible" content="IE-edge">
+<meta name = "viewport" content="width=device-width, initial-scale=1">
+<title>Google Map Experiment</title>
+
+<link rel="stylesheet" href="./index.css">
+<link rel="stylesheet" href="./external/icons.css">
+
+<script src="https://use.fontawesome.com/c9c59ba449.js"></script>
+<!--font awesome CDN-->
+</head>
+<body>
+
+<div id="googleMap" style="display:none;" class="closed">
+  <div class="outermost">
+    <span class="earth _1"><i class="fa fa-globe" aria-hidden="true"></i></span>
+    <span class="earth _2"><i class="fa fa-globe" aria-hidden="true"></i></span>
+    <span class="earth _3"><i class="fa fa-globe" aria-hidden="true"></i></span>
+    <div id="map">
+    </div>
+
+    <div class="ipad">
+      <div class="screen">
+        <div class="ani">
+          <div id="jumpingpill">
+            <div class="pill"><span class="_1"></span><span class="_2"></span></div>
+            <div class="shadow"></div>
+          </div>
+        </div>
+        <div class="text">
+          <div class="description">Select</div><div class="wind">A Position</div><div class="temp">On The Map</div><div class="pressure">-</div>
+        </div>
+        <div class="initial"></div>
+      </div>
+      <div class="homebtn"></div><div class="mic"></div><div class="sidebtn"></div>
+    </div>
+
+    <div id="floatingPanel">
+      <input id="addressInput" type="text" placeholder="type in address" size="35"/><button id="btn">submit</button>
+    </div>
+    <div class="closebtn">x</div>
+
+  </div><!--div.outermost-->
+</div> <!--div#GoogleMap-->
+
+<!-- <p id="txt"></p> -->
+
+<!-- ...........Animation Assets for Weather Widget...........-->
+
+<div id="asset">
+  <div class="clock">
+  <span id="hourhand"></span><span id="minutehand"></span>
+  <span id="holder"></span>
+  </div>
+
+  <div id="wavy">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+
+  <div id="movingboxes">
+  <span></span><span></span>
+  </div>
+
+  <div id="jumpingpill">
+    <div class="pill"><span class="_1"></span><span class="_2"></span></div>
+    <div class="shadow"></div>
+  </div>
+
+  <div id="zolaman">
+    <div class="whole">
+      <span class="head"></span><span class="chest"></span>
+      <span class="arm _1"></span><span class="arm _2"></span>
+      <span class="leg _1"></span><span class="leg _2"></span>
+    </div>
+    <div class="shadow"></div>
+  </div>
+
+  <div id="multiplesquares">
+    <div class="wrapper">
+      <span></span><span></span>
+      <span></span><span></span>
+    </div>
+  </div>
+
+  <div id="volumeswitch">
+    <span></span><span></span>
+    <span></span><span></span>
+  </div>
+</div>
+
+<!-- .......Animation Assets for Weather Widget: Weather ICONS.......-->
+<div id="weathericon">
+
+  <div class="clear">
+    <div class="sun">
+      <span class="ray"></span><span class="ray"></span>
+      <span class="ray"></span><span class="ray"></span>
+    </div>
+  </div>
+
+  <div class="rain">
+    <span class="drop"></span><span class="drop"></span>
+    <span class="drop"></span>
+  </div>
+
+  <div class="cloudy">
+    <div class="cloud"><span></span><span></span>
+      <span></span><span></span></div>
+
+    <div class="cloud"><span></span><span></span>
+      <span></span><span></span></div>
+  </div>
+
+  <div class="drizzling">
+    <div class="sun">
+      <span class="ray"></span><span class="ray"></span>
+      <span class="ray"></span><span class="ray"></span>
+    </div>
+    <div class="cloud"><span></span><span></span>
+      <span></span><span></span></div>
+    <div class="drizzle"><span></span><span></span><span></span></div>
+  </div>
+
+  <div class="thunderstorm">
+    <div class="bolt"><span class="triangle1"></span><span class="triangle2"></span></div>
+    <div class="bolt"><span class="triangle1"></span><span class="triangle2"></span></div>
+    <div class="bolt"><span class="triangle1"></span><span class="triangle2"></span></div>
+  </div>
+
+  <div class="snowy">
+    <div class="flake"></div><div class="flake"></div>
+    <div class="flake"></div>
+  </div>
+
+</div> <!--div#weatherIcon-->
+
+<!-- .............Weather Widget.............. -->
+
+<div id="weatherwidget">
+  <div class="remove"><span>X</span></div>
+  <div class="fix on">
+    <span class="track"><span class="object"></span></span>
+    <span></span>
+  </div>
+  <div class="grabbable"><span class="area"></span></div>
+  <div class="animation"></div>
+  <div class="tempandwind">
+    <span class="temp number">---</span><span class="temp unit celcius"></span>
+    <span class="wind number">---</span><span class="wind unit">m/s</span>
+  </div>
+  <div class="description">---</div>
+  <div class="place">Loading...</div>
+  <div class="menu">MAP</div>
+
+  <div id="startingani">
+    <span class="pointer"></span><span class="sign">I'm Here!</span>
+  </div>
+</div> <!--div#weatherwidget-->
+
+<!-- Landing Page Design -->
+<div id="landingPage">
+  <header>
+    <p><span id="dt"><span>D</span><span>T</span></span><span id="word_ani"></span><br/>Weather&nbsp;Widget</p>
+    <div class="menu"><span>Description</span><span class="active">Instruction</span></div>
+  </header>
+  <section class="content">
+    <div class="page _1 active">
+      <div class="slanted"></div>
+      <span class="bgicon"><i class="fa fa-cubes" aria-hidden="true"></i></span>
+      <span class="decoicon"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+      <h3>Description</h3>
+      <ul>
+        <li>This is a simple widget that lets you know what the current weather in your area is like.</li>
+        <li>You can check out other area's weather via <span class="highlight">google map</span> application mounted in it.</li>
+        <li>By creating this work, I wanted to learn and get a sense of how to get a simple <span class="highlight">AJAX</span> task done via Javascript <span class="highlight"><i>Promise</i></span>.</li>
+      </ul>
+    </div>
+    <div class="page _2">
+      <div class="slanted"></div>
+      <span class="bgicon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+      <span class="decoicon"><i class="fa fa-check-square-o" aria-hidden="true"></i></span>
+      <h3>Instruction</h3>
+      <div class="explanation">
+        <div class="img">
+          <span class="circle"></span><span class="circle"></span>
+          <span class="circle"></span><span class="circle"></span>
+          <span class="tooltip left">Grabbable Area</span>
+          <span class="tooltip above">ON/OFF for fixation</span>
+          <span class="tooltip right">Unit Changer</span>
+          <span class="tooltip below">Google Map</span>
+        </div>
+        <p>Let's check it out. <button id="activate_widget"><span>Activate</span></button></p>
+      </div>
+
+    </div>
+  </section>
+  <footer>
+    <p>Created with pure CSS/Javascript by Sebin Song</p>
+    <span><a target="_blank" href="https://github.com/SebinSong"><i class="fa fa-github" aria-hidden="true"></i></a>
+      <a target="_blank" href="https://www.linkedin.com/in/sebinsong"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+      <a target="_blank" href="https://codepen.io/freenaturalsoul/"><i class="fa fa-codepen" aria-hidden="true"></i></a><span>
+  </footer>
+</div>
+
+<!-- mounting script files -->
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZLGOc56yW67M7tGII3i53BvqVtSWr8xM&language=en&libraries=places" >
+</script> <!-- Google Maps API CDN-->
+<script src="./index.js"></script>
+<script src="./external/weather_widget_sebinsong.js"></script>
+</body>
+</html>

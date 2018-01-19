@@ -1,0 +1,47 @@
+// Run code here in the context of Chapter 0
+var UserLocation = {lat: 0, lng: 0};
+
+if(!navigator.geolocation) 
+  throw new Error("geolocation is not available on your system.");
+
+//callback declarations
+function loadUserGeolocationInfo() {
+	return new Promise( (resolve, reject) => {
+      console.log("Fetching your GPS data...");
+      navigator.geolocation.getCurrentPosition (
+      (data) => { resolve(data.coords); },
+      () => {  reject(new Error("Failed to get the user's geolocation info.")); }
+      );
+    
+    }); // new Promise block
+}
+
+function geo_success(coords){
+  UserLocation.lat = coords.latitude, UserLocation.lng = coords.longitude;
+  console.log("Your Location: ", UserLocation.lat, UserLocation.lng);
+  return new Promise(
+	(resolve, reject) => {
+      
+    	let xhr = new XMLHttpRequest();
+      
+      	xhr.open("GET",
+                "https://api.openweathermap.org/data/2.5/weather?lat=" + 
+                 UserLocation.lat + "&lon=" + UserLocation.lng +
+                 "&APPID=5cf4a173e461092281f1f31537b0b928",
+                true);
+      	xhr.onload = () => { resolve(JSON.parse(xhr.responseText)); };
+      	xhr.onerror = () => { reject(xhr.responseText); };
+      	xhr.send(null);
+      	console.log("Loading your weather data... hold on...");
+    } 
+  );
+};
+
+function geo_fail(e) {
+	throw e;
+}
+
+
+loadUserGeolocationInfo()
+  .then(geo_success, geo_fail)
+    .then((obj) => { console.log("done! Weather info is down below.\n"); console.log(obj); });

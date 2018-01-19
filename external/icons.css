@@ -1,0 +1,856 @@
+/*
+icons.css is a seperate stylesheet for Animated Icon Assets
+to be used in weather widget and googleMap.
+*/
+
+div#asset {
+  width: 600px;
+  height: 90px;
+
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 5px;
+  background:
+  repeating-linear-gradient(to bottom,
+    rgba(255,255,255,0.15) 0px, rgba(255,255,255,0.15) 1px,
+  transparent 1px, transparent 4px);
+
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  padding: 10px;
+
+  display: none;
+}
+
+div#asset > div {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+/* clock */
+div#asset > div.clock {
+  position: relative;
+  height: 70px; width: 70px;
+
+  border: 3px solid #fff; border-radius: 35px;
+}
+
+div.clock:before {
+  content: "";
+  position: absolute;
+  height: 60%; width: 60%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px dotted #fff;
+  border-radius: 50%;
+
+}
+
+div.clock:after {
+  content: "";
+  position: absolute;
+  height: 85%; width: 85%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #fff;
+  border-radius: 50%;
+
+}
+
+div.clock > span#holder {
+  position: absolute;
+  width: 12.5%; height: 12.5%;
+  background-color: #fff;
+  border: none; border-radius: 50%;
+
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+div.clock > span#hourhand {
+  position: absolute;
+  height: 3%; width: 25%;
+  top: calc(50% - 1.5%); left: 50%;
+  background-color: #fff;
+  border: none; border-radius: 30%;
+  transform-origin: left center;
+
+  animation: clockRotating 12s linear infinite;
+}
+
+div.clock > span#minutehand {
+  position: absolute;
+  height: 3%; width: 35%;
+  top: calc(50% - 1.5%); left: 50%;
+  background-color: #fff;
+  border: none; border-radius: 10%;
+  transform-origin: left center;
+
+  animation: clockRotating 1s linear infinite;
+}
+
+@keyframes clockRotating {
+  0%{ transform: rotate(0deg);} 100%{ transform: rotate(360deg);}
+}
+
+/* wavy loading icon */
+div#wavy {
+  position: relative;
+  width: 70px; height: 70px;
+}
+
+div#wavy > span {
+  height: 2%; width: 10px;
+  float: left;
+  margin-right: 2px;
+
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(255,255,60, 0.6);
+  border: none;
+
+  animation: wavy 1s ease-out infinite;
+}
+
+div#wavy > span:last-child {
+  margin-right: 0;
+}
+
+@keyframes wavy {
+
+  25% {height: 2%; background-color: rgba(255,255,60, 0.6);}
+  40% {height: 100%; background-color: rgba(255,255,60, 1);}
+  80% {height: 2%; background-color: rgba(255,255,60, 0.6);}
+}
+
+div#wavy > span:nth-child(2) { animation-delay: 0.1s; }
+div#wavy > span:nth-child(3) { animation-delay: 0.2s; }
+div#wavy > span:nth-child(4) { animation-delay: 0.3s; }
+div#wavy > span:nth-child(5) { animation-delay: 0.4s; }
+div#wavy > span:last-child { animation-delay: 0.5s; }
+
+
+div#movingboxes {
+  position: relative;
+  height: 70px; width: 70px;
+
+  border: 3px solid #fff; border-radius: 5px;
+}
+
+div#movingboxes > span {
+  position: absolute;
+  width: 42.5%; height: 42.5%;
+  border: 3px solid #fff;
+  border-radius: 20%;
+}
+
+div#movingboxes > span:first-child {
+  top: 5%; left: 52.5%;
+  background-color: rgba(255,255,255,1);
+  animation: movingboxes_box1 1s ease-out infinite;
+}
+
+div#movingboxes > span:last-child {
+  top: 52.5%; left: 5%;
+  background-color: transparent;
+  animation: movingboxes_box2 1s ease-out infinite;
+}
+
+@keyframes movingboxes_box1 {
+  0%{top: 5%; left: 52.5%;}25%{top: 5%; left: 5%;}50%{top: 52.5%; left: 5%;}
+  75%{top: 52.5%; left: 52.5%;}100%{top: 5%; left: 52.5%;}
+}
+
+@keyframes movingboxes_box2 {
+  0%{top: 52.5%; left: 5%;}25%{top: 52.5%; left: 52.5%;}50%{top: 5%; left: 52.5%;}
+  75%{top: 5%; left: 5%;}100%{top: 52.5%; left: 5%;}
+}
+
+div#jumpingpill {
+  position: relative;
+  height: 70px; width: 70px;
+  overflow: hidden;
+  /*border: 3px solid #fff; border-radius: 10px;*/
+}
+
+div#jumpingpill > div.pill {
+  position: absolute;
+  height: 60%; width: 25%;
+
+  bottom: 0; left: calc(50% - 12.5%);
+  transform-origin: 50% 50%;
+
+  animation: jumpingpill 0.7s linear infinite;
+}
+
+div#jumpingpill span._1 {
+  display: block;
+  width: 100%; height: 50%;
+  border: none; border-radius: 50% 50% 0 0;
+  background-color: #fff;
+}
+
+div#jumpingpill span._2 {
+  display: block;
+  width: 100%; height: 50%;
+  border: 2px solid #fff; border-radius: 0 0 50% 50%;
+  border-top: none;
+  background-color: transparent;
+}
+
+@keyframes jumpingpill {
+  0%{ height: 60%; bottom: 10%; transform: rotate(0deg);}
+  25% { height: 80%; bottom: 40%;}
+  50% { height: 60%; bottom: 10%; }
+  75% { height: 80%; bottom: 40%;}
+  100% { height: 60%; bottom: 10%; transform: rotate(360deg);}
+}
+
+div#jumpingpill > div.shadow {
+  height: 5%; width: 20%;
+  border: none; border-radius: 100%;
+  background-color: rgba(255,255,255,0.3);
+  position: absolute;
+  bottom: 5%; left: 50%;
+  transform: translateX(-50%);
+
+  animation: jumpingpill_shadow 0.7s linear infinite;
+}
+
+@keyframes jumpingpill_shadow {
+  0%{height: 5%; width: 20%; background-color: rgba(255,255,255,0.3);}
+  25%{height: 0%; width: 50%; background-color: rgba(255,255,255,0);}
+  50%{height: 5%; width: 20%; background-color: rgba(255,255,255,0.3);}
+  75%{height: 0%; width: 50%; background-color: rgba(255,255,255,0);}
+  100%{height: 5%; width: 20%; background-color: rgba(255,255,255,0.3);}
+}
+
+/* ZolaMan */
+div#zolaman {
+  position: relative;
+  height: 70px; width: 70px;
+}
+
+div#zolaman > div.whole {
+  position: absolute;
+  height: 90%; width: 60%;
+
+  bottom: 0%; left: 50%;
+  transform: translateX(-50%) scale(0.85);
+  animation: zolaman_running 0.7s linear infinite;
+}
+
+@keyframes zolaman_running {
+  0%{bottom: 0%;} 25%{bottom: 10%;} 50%{bottom: 0%;}
+  75%{bottom: 10%;} 100%{bottom: 0%;}
+}
+
+div#zolaman > div.whole > span {
+  position: absolute;
+  width: 50%; height: 33.3333%;
+}
+div#zolaman > div.whole > span.head {
+  border: 2px solid #fff;
+  background-color: #fff;
+  border-radius: 50%;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+}
+
+div#zolaman > div.whole > span.chest {
+  border-left: 4px solid #fff;
+  top: 33.3333%; left: calc(50% - 2px);
+}
+
+div#zolaman > div.whole > span.arm {
+  border-left: 3px solid #fff;
+  border-top: 3px solid #fff;
+  border-radius: 4px;
+  top: calc(33.3333% - 2px); left: 0;
+
+  transform-origin: right top;
+}
+
+div#zolaman > div.whole > span.arm._1 {
+  transform: rotate(0deg);
+  animation: armswing_1 0.7s linear infinite;
+}
+div#zolaman > div.whole > span.arm._2 {
+  transform: rotate(-135deg);
+  animation: armswing_2 0.7s linear infinite;
+}
+
+div#zolaman > div.shadow {
+    height: 5%; width: 30%;
+    border: none; border-radius: 100%;
+    background-color: rgba(255,255,255,0.3);
+    position: absolute;
+    bottom: 5%; left: 50%;
+    transform: translateX(-50%);
+
+    animation: zolaman_shadow 0.7s linear infinite;
+}
+
+@keyframes zolaman_shadow {
+  0%{height: 3%; width: 30%;}
+  25%{height: 3%; width: 40%;}
+  50%{height: 3%; width: 30%;}
+  75%{height: 3%; width: 40%;}
+  100%{height: 3%; width: 30%;}
+}
+
+@keyframes armswing_1 {
+  0%{ transform: rotate(0deg);} 50%{ transform: rotate(-135deg);}
+  100%{ transform: rotate(0deg);}
+}
+@keyframes armswing_2 {
+  0%{ transform: rotate(-135deg);} 50%{ transform: rotate(0deg);}
+  100%{ transform: rotate(-135deg);}
+}
+
+div#zolaman > div.whole > span.leg {
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+    border-radius: 4px;
+  top: calc(66.6666% - 2px); left: 0;
+
+  transform-origin: right top;
+}
+
+div#zolaman > div.whole > span.leg._1 {
+  transform: rotate(45deg);
+  animation: legswing_1 0.7s linear infinite;
+}
+div#zolaman > div.whole > span.leg._2 {
+  transform: rotate(-90deg);
+  animation: legswing_2 0.7s linear infinite;
+}
+
+@keyframes legswing_1 {
+  0%{ transform: rotate(45deg);} 50%{ transform: rotate(-90deg);}
+  100%{ transform: rotate(45deg);}
+}
+@keyframes legswing_2 {
+  0%{ transform: rotate(-90deg);} 50%{ transform: rotate(45deg);}
+  100%{ transform: rotate(-90deg);}
+}
+
+div#asset > div#multiplesquares {
+  position: relative;
+  height: 70px; width: 70px;
+}
+
+div#multiplesquares > div.wrapper {
+  position: absolute;
+  width: 90%; height: 90%;
+  top: 5%; left: 5%;
+  animation: squarerotate 5s linear infinite;
+}
+
+@keyframes squarerotate {
+  0%{transform: rotate(0deg);} 100%{transform: rotate(360deg);}
+}
+
+div#multiplesquares > div.wrapper > span {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation: wavysquares 0.9s linear infinite;
+}
+
+div#multiplesquares > div.wrapper > span:first-child {
+  width: 30%; height: 30%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+div#multiplesquares > div.wrapper > span:nth-child(2) {
+  width: 50%; height: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  animation-delay: 0.15s;
+}
+div#multiplesquares > div.wrapper > span:nth-child(3) {
+  width: 70%; height: 70%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  animation-delay: 0.3s;
+}
+div#multiplesquares > div.wrapper > span:last-child {
+  width: 90%; height: 90%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  animation-delay: 0.45s;
+}
+
+@keyframes wavysquares {
+  20% { border: 2px solid rgba(255,255,255,0.5); }
+  30% { border: 4px solid rgba(255,255,255,1); }
+  70% { border: 2px solid rgba(255,255,255,0.5); }
+}
+
+
+div#asset > div#volumeswitch {
+  position: relative;
+  width: 70px; height: 70px;
+  margin: 0 0 0 -8px;
+}
+
+div#volumeswitch > span {
+  position: absolute;
+  border: 3px solid #fff;
+  border-radius: 20%;
+  background-color: rgba(255,255,255,0);
+}
+
+div#volumeswitch > span:first-child {
+  top: 5%; left: 5%;
+  width: 56.666%; height: 56.666%;
+  background-color: rgba(255,255,255,1);
+  animation: volumeswitch_1 1s linear infinite;
+}
+div#volumeswitch > span:nth-child(2) {
+  top: 5%; right: 5%;
+  width: 28.333%; height: 56.666%;
+  animation: volumeswitch_2 1s linear infinite;
+}
+div#volumeswitch > span:nth-child(3) {
+  bottom: 5%; right: 5%;
+  width: 28.333%; height:  28.333%;
+  animation: volumeswitch_3 1s linear infinite;
+}
+div#volumeswitch > span:last-child {
+  bottom: 5%; left: 5%;
+  width: 56.666%; height:  28.333%;
+  animation: volumeswitch_4 1s linear infinite;
+}
+
+@keyframes volumeswitch_1 {
+  0% {width: 56.666%; height: 56.666%; background-color: rgba(255,255,255,1);}
+  25% {width: 28.333%; height: 56.666%; background-color: rgba(255,255,255,0);}
+  50% {width: 28.333%; height: 28.333%; background-color: rgba(255,255,255,0);}
+  75% {width: 56.666%; height: 28.333%; background-color: rgba(255,255,255,0);}
+  100% {width: 56.666%; height: 56.666%; background-color: rgba(255,255,255,1);}
+}
+@keyframes volumeswitch_2 {
+  0% {width: 28.333%; height: 56.666%; background-color: rgba(255,255,255,0);}
+  25% {width: 56.666%; height: 56.666%; background-color: rgba(255,255,255,1);}
+  50% {width: 56.666%; height: 28.333%; background-color: rgba(255,255,255,0);}
+  75% {width: 28.333%; height: 28.333%; background-color: rgba(255,255,255,0);}
+  100% {width: 28.333%; height: 56.666%; background-color: rgba(255,255,255,0);}
+}
+@keyframes volumeswitch_3 {
+  0% {width: 28.333%; height: 28.333%; background-color: rgba(255,255,255,0);}
+  25% {width: 56.666%; height: 28.333%; background-color: rgba(255,255,255,0);}
+  50% {width: 56.666%; height: 56.666%; background-color: rgba(255,255,255,1);}
+  75% {width: 28.333%; height: 56.666%; background-color: rgba(255,255,255,0);}
+  100% {width: 28.333%; height: 28.333%; background-color: rgba(255,255,255,0);}
+}
+@keyframes volumeswitch_4 {
+  0% {width: 56.666%; height: 28.333%; background-color: rgba(255,255,255,0);}
+  25% {width: 28.333%; height: 28.333%; background-color: rgba(255,255,255,0);}
+  50% {width: 28.333%; height: 56.666%; background-color: rgba(255,255,255,0);}
+  75% {width: 56.666%; height: 56.666%; background-color: rgba(255,255,255,1);}
+  100% {width: 56.666%; height: 28.333%; background-color: rgba(255,255,255,0);}
+}
+
+/* weather icon design */
+div#weathericon {
+  width: 600px;
+  height: 90px;
+
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 5px;
+  background:
+  repeating-linear-gradient(to bottom, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 1px,
+  transparent 1px, transparent 4px);
+
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  padding: 10px;
+
+  display: none;
+}
+
+div#weathericon > div {
+  display: inline-block;
+  margin-right: 10px;
+  position: relative;
+  width: 70px; height: 70px;
+}
+
+div#weathericon > div.clear {
+  border: 2px solid #fff;
+}
+
+div.sun {
+  position: absolute;
+  width: 40%; height: 40%;
+  border: 3px solid #fff; border-radius: 50%;
+
+  top: 50%; left: 50%;
+  margin: -20% 0 0 -20%;
+  animation: sunspin 6s linear infinite;
+}
+
+@keyframes sunspin {100%{transform: rotate(360deg);}}
+
+div.sun > span.ray {
+  position: absolute;
+  height: 30%; width: 300%;
+  top: 50%; left: 50%;
+  margin: -15% 0 0 -150%;
+
+}
+
+div.sun > span.ray:before,
+div.sun > span.ray:after {
+  content: "";
+  position: absolute;
+  height: 100%; width: 20%;
+
+  background-color: #fff;
+  border-radius: 50%;
+}
+
+div.sun > span.ray:before {
+  left: 0; top: 0;
+}
+div.sun > span.ray:after {
+  right: 0; top: 0;
+}
+
+div.sun > span.ray:first-child {
+  animation: rays_1 1.5s linear infinite 0.7s;
+}
+div.sun > span.ray:nth-child(2) {
+  transform: rotate(45deg) scale(0.8);
+  opacity: 0.3;
+  animation: rays_2 1.5s linear infinite;
+}
+div.sun > span.ray:nth-child(3) {
+  transform: rotate(90deg);
+  animation: rays_3 1.5s linear infinite 0.7s;
+}
+div.sun > span.ray:last-child {
+  transform: rotate(135deg) scale(0.8);
+  opacity: 0.3;
+  animation: rays_4 1.5s linear infinite;
+}
+
+@keyframes rays_1 {
+  0%{transform: scale(0.8); opacity: 0.3;} 100%{transform: scale(1); opacity: 1;}
+}
+@keyframes rays_2 {
+  0%{transform: rotate(45deg) scale(0.8); opacity: 0.3;} 100%{transform: rotate(45deg) scale(1); opacity: 1;}
+}
+@keyframes rays_3 {
+  0%{transform: rotate(90deg) scale(0.8); opacity: 0.3;} 100%{transform: rotate(90deg) scale(1); opacity: 1;}
+}
+@keyframes rays_4 {
+  0%{transform: rotate(135deg) scale(0.8); opacity: 0.3;} 100%{transform: rotate(135deg) scale(1); opacity: 1;}
+}
+
+div#weathericon > div.rain {
+  border: 2px dotted #fff;
+  overflow: hidden;
+}
+
+div.rain > span.drop {
+  position: absolute;
+  border: none;
+  border-radius: 100% 0% 50% 55% / 50% 0% 100% 55%;
+  transform: rotate(-45deg);
+}
+
+div.rain > span.drop:last-child {
+  width: 60%; height: 60%;
+  top: 20%; left: 50%;
+  margin: -30% 0 0 -30%;
+  background-color: #fff;
+  animation: raindrop_2 1.5s cubic-bezier(1,.01,.85,.39) infinite;
+}
+div.rain > span.drop:nth-child(2) {
+  width: 30%; height: 30%;
+  top: 0%; right: 10%;
+  background-color: transparent;
+  border: 2px solid #fff;
+  animation: raindrop_1 1.5s cubic-bezier(1,.01,.85,.39) infinite;
+  animation-delay: 0.2s;
+}
+div.rain > span.drop:first-child {
+  width: 25%; height: 25%;
+  top: 0%; left: 10%;
+  background-color: transparent;
+  border: 2px solid #fff;
+  animation: raindrop_1 1.5s cubic-bezier(1,.01,.85,.39) infinite;
+  animation-delay: 0.8s;
+}
+@keyframes raindrop_1 {
+  0%{ top: 10%; opacity: 1;}
+  80%{ top: 60%; opacity: 0;} 100%{ top: 60%; opacity: 0;}
+}
+@keyframes raindrop_2 {
+  0%{ top: 45%; opacity: 1;}
+  80%{ top: 75%; opacity: 0;} 100%{ top: 75%; opacity: 0;}
+}
+
+div#weathericon > div.cloudy {
+  border: 2px dotted #fff;
+  overflow: hidden;
+}
+
+div.cloudy > div.cloud:first-child {
+  position: absolute;
+  width: 60%; height: 30%;
+  top: 20%; right: 5%;
+  opacity: 0.4;
+  animation: smallcloud 4.5s linear infinite;
+}
+
+div.cloudy > div.cloud:last-child,
+div.drizzling > div.cloud {
+  position: absolute;
+  width: 100%; height: 50%;
+  top: 30%; left: 0%;
+  animation: bigcloud 2.5s linear infinite;
+}
+@keyframes bigcloud {
+  0%{top: 30%;} 10%{top: 35%;} 20%{top: 30%;}
+}
+@keyframes smallcloud {
+  0%{right: -50%; opacity: 0.4;} 60%{right: 70%; opacity: 0;}
+  100%{right: 70%; opacity: 0;}
+
+}
+
+div.cloud > span:first-child {
+  position: absolute;
+  width: 35%; height: 70%;
+  border: none;
+  border-radius: 50% 50% 0% 100% / 50% 100% 0% 50%;
+  background-color: #fff;
+  top: 15%; right: 13%;
+  transform: rotate(-45deg);
+}
+div.cloud > span:nth-child(2) {
+  position: absolute;
+  width: 30%; height: 60%;
+  border: none; border-radius: 50%;
+  background-color: #fff;
+  top: 10%; left: 8%;
+}
+div.cloud > span:nth-child(3) {
+  position: absolute;
+  width: 25%; height: 50%;
+  border: none; border-radius: 50%;
+  background-color: #fff;
+  top: 0%; left: 45%;
+}
+div.cloud > span:last-child {
+  position: absolute;
+  width: 40%; height: 80%;
+  border: none; border-radius: 50%;
+  background-color: #fff;
+  bottom: 0; left: 20%;
+}
+
+div#weathericon > div.drizzling {
+  border: 2px dotted #fff;
+  overflow: hidden;
+}
+/* drizzling */
+div.drizzling > div.sun {
+  width: 30%; height: 30%;
+  border: 3px solid #fff; border-radius: 50%;
+
+  top: 20%; right: 30%;
+  margin: 0;
+}
+
+div.drizzling > div.drizzle {
+  position: absolute;
+  width: 80%; height: 20%;
+  bottom: 10%; left: 10%;
+  opacity: 1;
+
+  animation: drizzling 1s linear infinite;
+}
+
+@keyframes drizzling {
+  0%{opacity: 1; bottom: 10%;} 100%{opacity: 0; bottom: -10%;}
+}
+
+div.drizzle > span {
+  position: absolute;
+  width: 10%; height: 100%;
+  border-radius: 50%;
+  background-color: #fff;
+  transform: rotate(30deg);
+}
+
+div.drizzle > span:first-child {
+  top: 0; left: 15%;
+}
+div.drizzle > span:nth-child(2) {
+  top: 0; left: 45%;
+}
+div.drizzle > span:last-child {
+  top: 0; right: 15%;
+}
+
+div.thunderstorm > div.bolt{
+  position: absolute;
+  transform: skew(-8deg);
+}
+
+div.thunderstorm > div.bolt:first-child {
+  top: 10%; left: 20%;
+  width: 60%; height: 80%;
+  color: rgba(255,255,255,1);
+  animation: bolt_1 3s linear infinite;
+}
+
+div.thunderstorm > div.bolt:nth-child(2) {
+  top: 3%; left: 5%;
+  width: 30%; height: 40%;
+  color: rgba(255,255,255,1);
+  animation: bolt_2 2s linear infinite;
+}
+
+div.thunderstorm > div.bolt:last-child {
+  bottom: 5%; right: 3%;
+  width: 30%; height: 40%;
+  color: rgba(255,255,255,1);
+  transform: skew(-8deg);
+  opacity: 0.75;
+  animation: bolt_3 2s linear infinite 1s;
+}
+
+@keyframes bolt_1 {
+  0% {top: 10%; opacity: 0.75;} 30% {top: 10%; opacity: 0.75;}
+  40% {top: 20%; opacity: 1; color: rgba(255,255,90,1);}
+  50% {top: 10%; opacity: 0.75;} 100% {top: 10%; opacity: 0.75;}
+}
+@keyframes bolt_2 {
+  0% {top: 3%; opacity: 0.75;} 30% {top: 3%; opacity: 0.75;}
+  40% {top: 6%; opacity: 1; color: rgba(255,255,90,1);}
+  50% {top: 3%; opacity: 0.75;} 100% {top: 3%; opacity: 0.75;}
+}
+
+@keyframes bolt_3 {
+  0% {bottom: 5%; opacity: 0.75;} 30% {bottom: 5%; opacity: 0.75;}
+  40% {bottom: 0%; opacity: 1; color: rgba(255,255,90,1);}
+  50% {bottom: 5%; opacity: 0.75;} 100% {bottom: 5%; opacity: 0.75;}
+}
+
+div.bolt > span {
+  transform: scale(1.15, 1.15);
+}
+div.bolt > span.triangle1 {
+  content: "";
+  width: 0; height: 0;
+  position: absolute;
+
+  border-left: 0 solid transparent;
+  border-right: calc(70px*2/7) solid transparent;
+  border-top: calc(70px*32/70) solid currentColor;
+  bottom: 0; left: 50%;
+}
+div.bolt > span.triangle2 {
+  content: "";
+  width: 0; height: 0;
+  position: absolute;
+
+  border-right: 0 solid transparent;
+  border-left: calc(70px*2/7) solid transparent;
+  border-bottom: calc(70px*32/70) solid currentColor;
+  top: 0; left: 0;
+}
+
+div.bolt:nth-child(2) > span.triangle1,
+div.bolt:last-child > span.triangle1 {
+  content: "";
+  width: 0; height: 0;
+  position: absolute;
+
+  border-left: 0 solid transparent;
+  border-right: calc(70px*1/7) solid transparent;
+  border-top: calc(70px*16/70) solid currentColor;
+  bottom: 0; left: 50%;
+}
+div.bolt:nth-child(2) > span.triangle2,
+div.bolt:last-child > span.triangle2  {
+  content: "";
+  width: 0; height: 0;
+  position: absolute;
+
+  border-right: 0 solid transparent;
+  border-left: calc(70px*1/7) solid transparent;
+  border-bottom: calc(70px*16/70) solid currentColor;
+  top: 0; left: 0;
+}
+
+/* snowy */
+
+div.snowy {
+  overflow: hidden;
+}
+
+div.snowy > div.flake {
+  position: absolute;
+}
+div.snowy > div.flake:after {
+  position: absolute;
+  width: 100%; height: 100%;
+  content: "\2744"; color: #fff;
+  text-align: center;
+  transform-origin: 50% 60%;
+}
+
+div.snowy > div.flake:last-child {
+  width: 70%; height: 70%;
+  top: 15%; left: 15%;
+  animation: flake_1 2.8s linear infinite;
+}
+div.snowy > div.flake:last-child:after {
+  font-size: 50px; line-height: 1;
+  animation: flake_1_after 3s linear infinite;
+}
+
+div.snowy > div.flake:nth-child(2) {
+  width: 30%; height: 30%;
+  top: 5%; left: 5%;
+  animation: flake_2 1.5s linear infinite;
+}
+div.snowy > div.flake:nth-child(2):after {
+  font-size: 20px; line-height: 20px;
+  width: 100%; height: 100%;
+  animation: flake_2_after 2.2s linear infinite;
+}
+div.snowy > div.flake:first-child {
+  width: 30%; height: 30%;
+  top: 15%; right: 5%;
+  animation: flake_3 2.5s linear infinite;
+}
+div.snowy > div.flake:first-child:after {
+  font-size: 20px; line-height: 20px;
+  width: 100%; height: 100%;
+  animation: flake_3_after 2s linear infinite;
+}
+
+@keyframes flake_1 {
+  0%{top: -20%; opacity: 1;} 100%{top: 50%; opacity: 0;}
+}
+@keyframes flake_1_after {
+  0%{transform: rotate(0deg);} 100%{transform: rotate(360deg);}
+}
+@keyframes flake_2 {
+  0%{top: 0%; opacity: 1;} 100%{top: 50%; opacity: 0;}
+}
+@keyframes flake_2_after {
+  0%{transform: rotate(0deg);} 100%{transform: rotate(-360deg);}
+}
+@keyframes flake_3 {
+  0%{top: 0%; opacity: 1;} 100%{top: 80%; opacity: 0;}
+}
+@keyframes flake_3_after {
+  0%{transform: rotate(0deg);} 100%{transform: rotate(-360deg);}
+}

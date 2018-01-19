@@ -1,5 +1,5 @@
 (function mobileDeviceDetection(){ // It's gonna check the type of the user device.
-  let widget;
+  let widget, landingPage;
 })();
 
 (function weatherWidget(){

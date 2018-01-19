@@ -1,3 +1,6 @@
+(function mobileDeviceDetection(){ // It's gonna check the type of the user device.
+
+})();
 
 (function weatherWidget(){
 

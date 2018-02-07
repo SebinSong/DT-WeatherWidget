@@ -1201,7 +1201,7 @@ div#landingPage > footer > span > a:hover > i {
 
   div#landingPage > footer > p {
     position: absolute;
-    bottom: 30px; right: 15px;
+    bottom: 20px; right: 15px;
     text-align: right;
   }
   div#landingPage > footer > p > br {

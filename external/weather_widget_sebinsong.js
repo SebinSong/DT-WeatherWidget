@@ -1,5 +1,16 @@
 (function mobileDeviceDetection(){ // It's gonna check the type of the user device.
-  let widget, landingPage;
+
+function mobilecheck() {
+    let deviceinfo, devicestr;
+
+    deviceinfo = navigator.userAgent||navigator.vendor||window.opera;
+    devicestr = deviceinfo.substr(0,4);
+    console.log(deviceinfo);
+    console.log(devicestr);
+	}
+
+  mobilecheck();
+
 })();
 
 (function weatherWidget(){

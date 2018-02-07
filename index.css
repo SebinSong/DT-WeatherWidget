@@ -6,7 +6,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-ul{
+ul {
   list-style: none;
 }
 
@@ -40,6 +40,7 @@ div#googleMap {
 
   transition: opacity 0.5s ease-out;
 }
+
 div#googleMap.closed {
     opacity: 0;
 }
@@ -69,9 +70,6 @@ div#googleMap > .outermost > span.earth {
   color: rgb(90,20,20);
   transition: opacity 3s ease-out 0.7s;
 }
-div#googleMap.mobile > .outermost > span.earth {
-  display: none;
-}
 
 div#googleMap.closed > .outermost > span.earth {
   opacity: 0;
@@ -98,13 +96,9 @@ div#googleMap  div#map {
 
   position: absolute;
   top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
   outline: 5px double rgba(255,255,255,0.8); outline-offset: 10px;
   z-index: 10;
-
-  transform: translate(-50%, -50%);
-}
-div#googleMap.mobile div#map {
-  height: 100%; width: 100%;
 }
 
 div#googleMap div.ipad {
@@ -248,7 +242,7 @@ div#weatherwidget{
   grid-column-gap: 2px; grid-row-gap: 2px;
   padding: 2px;
 
-  position: fixed;   z-index: 10;
+  position: fixed; z-index: 10;
   top: 10px; right: 10px;
   transition: opacity 0.6s ease-out, transform 0.4s ease-out;
 
@@ -256,10 +250,6 @@ div#weatherwidget{
 }
 div#weatherwidget.active {
   opacity: 1; visibility: visible;
-}
-
-div#weatherwidget.mobile {
-  top: calc(100% - 145px);
 }
 
 div#weatherwidget.removed {
@@ -821,10 +811,6 @@ div#landingPage > section.content {
   text-align: center;
   overflow: hidden;
 }
-div#landingPage.mobile > section.content {
-  height: 55%;
-  overflow: scroll;
-}
 
 div#landingPage > section.content > div.page {
   position: relative;
@@ -836,9 +822,6 @@ div#landingPage > section.content > div.page {
   font-family: "Signika"; font-weight: 100;
   text-align: center;
 
-}
-div#landingPage.mobile > section.content > div.page {
-  width: 100%; min-width: none;
 }
 
 div#landingPage > section.content > div.page > h3 {
@@ -874,14 +857,12 @@ div#landingPage.mobile > section.content > div.page > span.bgicon {
   font-size: 100px;
   bottom: 5%; left: 20px;
 }
+
 div#landingPage > section.content > div.page._1 > ul {
   margin: 10px 0; display: inline-block;
   width: 80%;
 }
-div#landingPage.mobile > section.content > div.page._1 > ul {
-  margin: 10px 0;
-  width: 100%;
-}
+
 div#landingPage > section.content > div.page._1 > ul > li {
   padding: 20px;
   text-align: right;
@@ -941,7 +922,7 @@ section.content > div.page._2 div.img {
   top: 45%; left: 50%;
   transform: translate(-50%, -50%);
 }
-
+/* %% */
 section.content > div.page._2 div.img > span.circle {
   width: 25px; height: 25px;
   border-radius: 50%;
@@ -1079,6 +1060,9 @@ div#landingPage > footer > p {
   bottom: 10px; right: 15px;
   text-decoration: underline;
 }
+div#landingPage > footer > p > br {
+  display: none;
+}
 div#landingPage > footer > span {
   font-size: 26px;
   position: absolute;
@@ -1097,4 +1081,139 @@ div#landingPage > footer > span > a:hover > i {
 @keyframes rotateicon {
   0% { transform: scale(1.1) rotate(0deg);}
   100% { transform: scale(1.1) rotate(360deg);}
+}
+
+
+/* media queries for mobile and tablet */
+@media screen and (max-width: 768px) {
+  /* Tablet screens */
+  html, body {
+    min-width: 0;
+    width: 100vw; height: 100vh;
+  }
+
+  body {
+    background:
+    repeating-linear-gradient(to right, transparent 0px, transparent 48px,
+    rgba(0,0,0,0.05) 48px, rgba(0,0,0,0.05) 50px),
+    repeating-linear-gradient(to bottom, transparent 0px, transparent 48px,
+    rgba(0,0,0,0.05) 48px, rgba(0,0,0,0.05) 50px),
+    repeating-linear-gradient(to right, transparent 0px, transparent 9px,
+    rgba(0,0,0,.1) 10px),
+    repeating-linear-gradient(to bottom, transparent 0px, transparent 9px,
+    rgba(0,0,0,.1) 10px),
+    linear-gradient(135deg, rgba(171,178,35,1) 0%,
+    rgba(62,127,25,1) 50%,rgba(1,145,142,1) 100%);
+
+    position: relative;
+  }
+
+  div#googleMap > .outermost > span.earth {
+    display: none;
+  }
+
+  div#googleMap  div#map {
+    min-height: none; min-width: none;
+    height: 100%; width: 100%;
+
+    position: absolute;
+    top: 0; left: 0;
+    transform: translate(0, 0);
+  }
+
+  div#googleMap div.ipad {
+    min-height: 0; min-width: 0;
+    width: 230px; height: 150px;
+  }
+
+  div#landingPage {
+    position: absolute;
+    width: 100%; height: 100%;
+  }
+
+  div#landingPage > header {
+    height: 25%;
+  }
+
+  div#landingPage > header > p {
+    font-size: 35px; font-weight: 600;
+    position: absolute; top: 40%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  div#landingPage > header > p >span#dt {
+    font-size: 50px;
+  }
+
+  span#word_ani {
+    font-size: 22px; letter-spacing: 1px;
+    margin-left: 7px;
+  }
+
+  div#landingPage > header > div.menu {
+    display: none;
+  }
+
+  div#landingPage > section.content {
+    width: 100%; height: 60%;
+    overflow: scroll;
+  }
+
+  div#landingPage > section.content > div.page {
+
+    display: block;
+    width: 100%; min-width: 0;
+    padding: 12px;
+    font-size: 20px; line-height: 1.2;
+    font-family: "Signika"; font-weight: 100;
+  }
+
+  div#landingPage > section.content > div.page > h3 {
+    font-size: 30px;
+  }
+
+  div#landingPage > section.content > div.page._1 > span.decoicon {
+    font-size: 20px;
+  }
+  div#landingPage > section.content > div.page > span.bgicon {
+    bottom: 15px; left: 20px;
+    font-size: 150px;
+    z-index: -1;
+  }
+
+  div#landingPage > section.content > div.page._1 > ul {
+    width: 95%;
+  }
+
+  div#landingPage > section.content > div.page._1 > ul > li {
+    padding: 20px;
+  }
+
+  section.content > div.page._2 > div.explanation > p {
+    padding: 10px;
+  }
+
+  section.content > div.page._2 div.img > span.tooltip {
+    width: 120px; height: 30px;
+    font-size: 14px; line-height: 30px;
+  }
+
+  div#landingPage > footer > p {
+    position: absolute;
+    bottom: 30px; right: 15px;
+    text-align: right;
+  }
+  div#landingPage > footer > p > br {
+    display: inline;
+  }
+  div#landingPage > footer > span {
+    position: absolute;
+    top: 40px; right: 15px;
+  }
+
+  div#weatherwidget{
+    top: calc(100% - 105px); right: calc(100% - 145px);
+  }
+  /* %% */
 }
